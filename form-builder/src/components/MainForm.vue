@@ -36,7 +36,7 @@ export default {
       this.newplaceholder=''
     },
     createform:function(){
-      this.axios.post(url,this.items)
+      this.axios.post('http://localhost:3000',this.items)
     }
   }
 }
