@@ -1,6 +1,11 @@
 # form-builder
 
-> A Vue.js project
+> Remaining Works(Necessary)：
+1.submit system / submit success alert / auto build datatable 
+2.Form Validation
+
+>Debug:
+1.Mysql wrong lead to backend collapse(eg: request a wrong formkey)
 
 ## Build Setup
 
@@ -28,3 +33,6 @@ npm start
 
 # run frontend
 npm run dev
+```
+
+
