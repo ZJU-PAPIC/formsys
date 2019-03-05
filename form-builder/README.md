@@ -1,8 +1,8 @@
 # form-builder
 
-> Remaining Works(Necessary)：;
-> 1.submit system / submit success alert / auto build datatable 
-> 2.Form Validation
+> Remaining Works(Necessary):
+>> 1.submit system / submit success alert / auto build datatable 
+>> 2.Form Validation
 
 > Debug:
 > 1.Mysql wrong lead to backend collapse(eg: request a wrong formkey)
