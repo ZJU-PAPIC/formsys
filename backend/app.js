@@ -1,10 +1,18 @@
-var createError = require('http-errors');
+// var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var path = require('path');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
 var bodyParser = require('body-parser');
 var querystring = require("querystring");
+var mysql = require('mysql');
+
+var conn = mysql.createConnection({
+  host : 'localhost',
+  user : 'root',
+  password : 'root',
+  database : 'formsys'
+});
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -30,24 +38,28 @@ app.use(bodyParser.urlencoded({extended:true}));
 //   next(createError(404));
 // });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 app.post('/',function(req,res){
   console.log(req.body);
-  req.on("data",function(data){//监听数据过来
-    console.log(decodeURIComponent(data));//转码
-    var param = querystring.parse(decodeURIComponent(data));//转成object对象，方便使用
-    var data = JSON.parse(data);//序列化
+  req.on("data",function(data){//listening data
+    console.log(decodeURIComponent(data));//decode
+    var param = querystring.parse(decodeURIComponent(data));//to object
+    var data = JSON.parse(data);//parse
     console.log(data);
+    var datastr = JSON.stringify(data);
+    // conn.connect;
+    console.log(datastr);
+    conn.query("insert into formlist(formstr) values (?)",datastr);
   });
 });
 
@@ -57,6 +69,6 @@ app.all('/', function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
-});//Allow ChangeOrigin
+});//allow ChangeOrigin
 
 module.exports = app;
