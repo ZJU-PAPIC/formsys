@@ -49,26 +49,56 @@ app.use(bodyParser.urlencoded({extended:true}));
 //   res.render('error');
 // });
 
-app.post('/',function(req,res){
-  console.log(req.body);
-  req.on("data",function(data){//listening data
-    console.log(decodeURIComponent(data));//decode
-    var param = querystring.parse(decodeURIComponent(data));//to object
-    var data = JSON.parse(data);//parse
-    console.log(data);
-    var datastr = JSON.stringify(data);
-    // conn.connect;
-    console.log(datastr);
-    conn.query("insert into formlist(formstr) values (?)",datastr);
-  });
-});
-
 app.all('/', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials','true');
   next();
 });//allow ChangeOrigin
+
+app.get('/',function(req,res){
+  console.log(req.query);
+  conn.query('select formstr from formlist where formkey = ?',req.query.key,function(err,result){
+    if(err){
+      console.log(err);
+      res.end;
+    }
+    else{
+      console.log(result[0].formstr);
+      res.send(result[0].formstr);
+      res.end;
+    }
+  });
+});
+
+app.post('/',function(req,res){
+  console.log(req.body);
+  req.on("data",function(data){//listening data
+    // console.log(decodeURIComponent(data));//decode
+    var param = querystring.parse(decodeURIComponent(data));//to object
+    var data = JSON.parse(data);//parse
+    console.log(data);
+    var formkey = data[data.length-1].key;
+    data.splice(data.length-1,1);
+    var datastr = JSON.stringify(data);
+    // conn.connect;
+    // console.log(datastr);
+    conn.query("insert into formlist(formkey,formstr) values (?,?)",[formkey,datastr],function(err,result){
+      if(err){
+        console.log(err.message);
+        // res.writeHead(500,{'Content-Type':'text/html'});
+        res.send('0');
+        res.end();
+        return;
+      }
+      // res.writeHead(200,{'Conten-Type':'text/html'});
+      res.send('1');
+      res.end();
+    });
+    
+  });
+});
 
 module.exports = app;

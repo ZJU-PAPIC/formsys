@@ -36,7 +36,22 @@ export default {
       this.newplaceholder = ''
     },
     createform: function () {
-      this.axios.post('http://localhost:3000', this.items)
+      var formkey = {key: 'f' + Date.now()}
+      this.items.push(formkey)
+      formkey = {}
+      if (this.items.length > 1) {
+        this.axios.post('http://localhost:3000', this.items)
+          .then((res) => {
+            console.log(res)
+            if (res.data === 1) {
+              alert('Success!')
+            } else {
+              alert('System Wrong!')
+              // console.log(typeof res.data)
+            }
+          })
+      }
+      this.items = []
     }
   }
 }

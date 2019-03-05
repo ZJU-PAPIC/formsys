@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from '@/App.vue'
+import MainForm from '@/components/MainForm'
+import GetForm from '@/components/GetForm'
 
 Vue.use(Router)
 
@@ -8,8 +9,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'App',
-      component: App
+      name: 'Mainform',
+      component: MainForm
+    },
+    {
+      path: '/:fkey',
+      name: 'GetForm',
+      component: GetForm,
+      props: true
     }
   ]
 })

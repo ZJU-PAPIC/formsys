@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-    <MainForm></MainForm>
-    <!-- <router-view/> -->
+    <!-- <MainForm></MainForm> -->
+    <router-view/>
   </div>
 </template>
 
 <script>
 import MainForm from './components/MainForm.vue'
+import GetForm from './components/GetForm.vue'
 
 export default {
   name: 'App',
   components: {
-    MainForm
+    MainForm,
+    GetForm
   }
 }
 </script>
