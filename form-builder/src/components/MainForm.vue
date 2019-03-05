@@ -16,27 +16,27 @@
 import ViewBox from './ViewBox.vue'
 
 export default {
-  name:'MainForm',
-  components:{
+  name: 'MainForm',
+  components: {
     ViewBox
   },
-  data() {
+  data () {
     return {
-      items:[{type:'text',placeholder:'this is a textbox',name:'text1'}],
-      newplaceholder:''
+      items: [{type: 'text', placeholder: 'this is a textbox', name: 'text1'}],
+      newplaceholder: ''
     }
   },
-  methods:{
-    delitem:function(index){
-      this.items.splice(index,1)
+  methods: {
+    delitem: function (index) {
+      this.items.splice(index, 1)
     },
-    addtextbox:function(){
-      var newtextbox={type:'text',placeholder:this.newplaceholder,name:'n'+Date.now()}
+    addtextbox: function () {
+      var newtextbox = {type: 'text', placeholder: this.newplaceholder, name: 'n' + Date.now()}
       this.items.push(newtextbox)
-      this.newplaceholder=''
+      this.newplaceholder = ''
     },
-    createform:function(){
-      this.axios.post('http://localhost:3000',this.items)
+    createform: function () {
+      this.axios.post('http://localhost:3000', this.items)
     }
   }
 }

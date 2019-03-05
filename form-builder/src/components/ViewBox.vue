@@ -9,15 +9,15 @@
 
 <script>
 export default {
-  name:'ViewBox',
-  props:{
-    item:Object,
-    index:Number
+  name: 'ViewBox',
+  props: {
+    item: Object,
+    index: Number
   },
   methods: {
-    delitem:function(){
-      this.$emit('delitem',this.index)
+    delitem: function () {
+      this.$emit('delitem', this.index)
     }
-  },
+  }
 }
 </script>
