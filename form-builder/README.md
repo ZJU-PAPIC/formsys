@@ -7,6 +7,9 @@
 ### Debug:
 1. Mysql wrong lead to backend collapse(eg: request a wrong formkey)
 
+### Expansion Functions
+1. More form component (including submit files)
+
 ## Build Setup
 
 ``` bash
