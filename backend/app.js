@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 //   res.render('error');
 // });
 
-app.all('/', function(req, res, next) {
+app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -94,10 +94,55 @@ app.post('/',function(req,res){
         return;
       }
       // res.writeHead(200,{'Conten-Type':'text/html'});
+      var createfield = "";
+      for(var datap = 0; datap < data.length; datap++)
+      {
+        createfield += (data[datap].name + ' varchar(255),');
+      }
+      var creattable = "CREATE TABLE " + formkey + " (id INT(11) NOT NULL AUTO_INCREMENT,"+ createfield +"PRIMARY KEY(id))DEFAULT CHARSET=utf8";
+      conn.query(creattable,function(err,result){
+        if(err){
+          console.log(err.message);
+          // res.writeHead(500,{'Content-Type':'text/html'});
+          res.send('0');
+          res.end();
+          return;
+        }
+        res.send('1');
+        res.end();
+      });
+    });
+  });
+});
+
+app.post('/formpost',function(req,res){
+  req.on("data",function(data){
+    var data = JSON.parse(data);//parse
+    var fkey = data[data.length-1].key;
+    var insertdata = 'insert into ' +  fkey + '(' + data[0].name;
+    for(var i = 1; i < data.length-1 ;i ++){
+      insertdata += (',' + data[i].name)
+    }
+    insertdata += ') values (';
+    insertdata += data[0].value;
+    for(var i = 1; i < data.length-1 ;i ++){
+      insertdata += (',' + data[i].value)
+    }
+    insertdata += ')';
+    console.log(insertdata);
+    conn.query(insertdata,function(err,result){
+      if(err){
+        console.log(err.message);
+        // res.writeHead(500,{'Content-Type':'text/html'});
+        insertdata = '';
+        res.send('0');
+        res.end();
+        return;
+      }
+      insertdata = '';
       res.send('1');
       res.end();
     });
-    
   });
 });
 

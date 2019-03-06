@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/dev': {
-        target: 'http://loaclhost:3000',
+      '/formpost': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
-          '^/dev': ''
+        //   '^/formpost': '/formpost'
         }
       }
     },

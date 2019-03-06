@@ -3,8 +3,10 @@
     <FormItems v-for='(item,index) in items'
       :key='index'
       :index='index'
-      :item='item'>
+      :item='item'
+      ref='FormItems'>
     </FormItems>
+    <button @click='uploadinput'>提交</button>
   </div>
 </template>
 
@@ -21,7 +23,19 @@ export default {
   },
   data () {
     return {
-      items: []
+      items: [],
+      values: []
+    }
+  },
+  methods: {
+    uploadinput: function () {
+      for (var i = 0; i < this.items.length; i++) {
+        this.values.push(this.$refs.FormItems[i].formvalue)
+      }
+      var key = {key: this.fkey}
+      this.values.push(key)
+      console.log(this.values)
+      this.axios.post('http://localhost:3000/formpost', this.values)
     }
   },
   created: function () {
@@ -34,5 +48,8 @@ export default {
       // console.log(thisx.items)
     })
   }
+//   mounted: function () {
+//     this.values.push(this.$refs.FormItems.formvalue)
+//   }
 }
 </script>
