@@ -3,6 +3,7 @@
 ### Remaining Works(Necessary):
 1. submit system / submit success alert / auto build datatable 
 2. Form Validation
+3. Control Board (QCW?)
 
 ### Debug:
 1. Mysql wrong lead to backend collapse(eg: request a wrong formkey)
