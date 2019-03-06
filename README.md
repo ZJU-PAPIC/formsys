@@ -1,7 +1,7 @@
 # formsys
 
 ### Remaining Works(Necessary):
-1. submit system / submit success alert / auto build datatable 
+1. submit system (done) / submit success alert / auto build datatable (done)
 2. Form Validation
 3. Control Board
 4. Login system (QCW?)
