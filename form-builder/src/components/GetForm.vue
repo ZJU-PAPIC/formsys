@@ -30,12 +30,26 @@ export default {
   methods: {
     uploadinput: function () {
       for (var i = 0; i < this.items.length; i++) {
+        if (this.$refs.FormItems[i].formvalue.value === '') {
+          alert('!')
+          return
+        }
         this.values.push(this.$refs.FormItems[i].formvalue)
       }
       var key = {key: this.fkey}
       this.values.push(key)
       console.log(this.values)
       this.axios.post('http://localhost:3000/formpost', this.values)
+        .then((res) => {
+          console.log(res)
+          if (res.data === 1) {
+            alert('Success!')
+          } else {
+            alert('System Wrong!')
+            // console.log(typeof res.data)
+          }
+        })
+      this.values = []
     }
   },
   created: function () {
