@@ -9,12 +9,14 @@
 <script>
 import MainForm from './components/MainForm.vue'
 import GetForm from './components/GetForm.vue'
+import ControlPanel from './components/ControlPanel.vue'
 
 export default {
   name: 'App',
   components: {
     MainForm,
-    GetForm
+    GetForm,
+    ControlPanel
   }
 }
 </script>

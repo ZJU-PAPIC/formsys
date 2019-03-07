@@ -9,6 +9,8 @@ Vue.config.productionTip = false
 
 Vue.prototype.axios = axios
 
+// router.mode = 'history'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
