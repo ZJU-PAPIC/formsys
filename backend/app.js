@@ -124,9 +124,9 @@ app.post('/formpost',function(req,res){
       insertdata += (',' + data[i].name)
     }
     insertdata += ') values (';
-    insertdata += data[0].value;
+    insertdata += ('\"' + data[0].value + '\"');
     for(var i = 1; i < data.length-1 ;i ++){
-      insertdata += (',' + data[i].value)
+      insertdata += (',\"' + data[i].value + '\"')
     }
     insertdata += ')';
     console.log(insertdata);
