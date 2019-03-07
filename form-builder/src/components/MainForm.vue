@@ -8,8 +8,13 @@
     </ViewBox>
     <input type='text' placeholder='Input placeholer for textbox' v-model='newplaceholder'>
     <button @click='addtextbox'>insert textbox</button>
-    <div><button @click='createform'>Create</button></div>
-    <div><p>{{'This form\'s key is: ' + fkey}}</p></div>
+    <div>
+      <button @click='createform'>Create</button>
+    </div>
+    <div>
+      <!-- <p>{{'This form\'s key is: ' + fkey}}</p> -->
+      <a v-if='fkey' @click="gotoform">This form\'s key is: {{fkey}}</a>
+    </div>
   </div>
 </template>
 
@@ -60,6 +65,9 @@ export default {
         this.fkey = ''
       }
       this.items = []
+    },
+    gotoform: function () {
+      self.location.href = ('http://localhost:8080/#/form/' + this.fkey)
     }
   }
 }
