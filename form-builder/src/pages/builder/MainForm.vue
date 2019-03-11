@@ -19,7 +19,8 @@
 </template>
 
 <script>
-import ViewBox from './ViewBox.vue'
+import ViewBox from './components/ViewBox.vue'
+import builder from '@/services/builder.js'
 
 export default {
   name: 'MainForm',
@@ -48,16 +49,17 @@ export default {
       this.fkey = formkey.key
       formkey = {}
       if (this.items.length > 1) {
-        this.axios.post('http://localhost:3000', this.items)
-          .then((res) => {
-            console.log(res)
-            if (res.data === 1) {
-              alert('Success!')
-            } else {
-              alert('System Wrong!')
-              // console.log(typeof res.data)
-            }
-          })
+        // this.axios.post('http://localhost:3000', this.items)
+        //   .then((res) => {
+        //     console.log(res)
+        //     if (res.data === 1) {
+        //       alert('Success!')
+        //     } else {
+        //       alert('System Wrong!')
+        //       console.log(typeof res.data)
+        //     }
+        //   })
+        builder.sendformdata('http://localhost:3000', this)
       } else {
         alert('!')
         this.items.splice(0, 1)

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import MainForm from './components/MainForm.vue'
-import GetForm from './components/GetForm.vue'
-import ControlPanel from './components/ControlPanel.vue'
+import MainForm from './pages/builder/MainForm.vue'
+import GetForm from './pages/form/GetForm.vue'
+import ControlPanel from './pages/controlpanel/ControlPanel.vue'
 
 export default {
   name: 'App',

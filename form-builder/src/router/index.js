@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MainForm from '@/components/MainForm'
-import GetForm from '@/components/GetForm'
-import ControlPanel from '@/components/ControlPanel'
+import MainForm from '@/pages/builder/MainForm'
+import GetForm from '@/pages/form/GetForm'
+import ControlPanel from '@/pages/controlpanel/ControlPanel'
 
 Vue.use(Router)
 
@@ -21,7 +21,7 @@ export default new Router({
     },
     {
       path: '/controlpanel/builder',
-      name: 'Mainform',
+      name: 'MainForm',
       component: MainForm
     }
   ]

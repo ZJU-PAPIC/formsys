@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import FormItems from './FormItems.vue'
+import FormItems from './components/FormItems.vue'
+import form from '@/services/form.js'
 
 export default {
   name: 'GetForm',
@@ -39,16 +40,17 @@ export default {
       var key = {key: this.fkey}
       this.values.push(key)
       console.log(this.values)
-      this.axios.post('http://localhost:3000/formpost', this.values)
-        .then((res) => {
-          console.log(res)
-          if (res.data === 1) {
-            alert('Success!')
-          } else {
-            alert('System Wrong!')
-            // console.log(typeof res.data)
-          }
-        })
+      // this.axios.post('http://localhost:3000/formpost', this.values)
+      //   .then((res) => {
+      //     console.log(res)
+      //     if (res.data === 1) {
+      //       alert('Success!')
+      //     } else {
+      //       alert('System Wrong!')
+      //       console.log(typeof res.data)
+      //     }
+      //   })
+      form.form.formsubmit('http://localhost:3000/formpost', this)
       this.values = []
     }
   },
@@ -61,6 +63,7 @@ export default {
       thisx.items = res.data
       // console.log(thisx.items)
     })
+    form.form.getform('http://localhost:3000', this)
   }
 //   mounted: function () {
 //     this.values.push(this.$refs.FormItems.formvalue)

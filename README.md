@@ -4,7 +4,9 @@
 1. submit system (done) / submit success alert (done) / auto build datatable (done)
 2. Form Validation (done)
 3. Function: Check data in control panel
-4. Login system (QCW?)
+4. Login system (using QCW)
+5. Verification code
+6. Reestablish database structure
 
 ### Debug:
 1. Mysql wrong lead to backend collapse(eg: request a wrong formkey)
