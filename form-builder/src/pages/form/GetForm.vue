@@ -56,14 +56,14 @@ export default {
   },
   created: function () {
     var thisx = this
-    this.axios.get('http://localhost:3000', {
-      params: {key: this.fkey}
-    }).then(function (res) {
-      // console.log(res.data)
-      thisx.items = res.data
-      // console.log(thisx.items)
-    })
-    form.form.getform('http://localhost:3000', this)
+    // this.axios.get('http://localhost:3000', {
+    //   params: {key: this.fkey}
+    // }).then(function (res) {
+    //   console.log(res.data)
+    //   thisx.items = res.data
+    //   console.log(thisx.items)
+    // })
+    form.form.getform('http://localhost:3000/form', this)
   }
 //   mounted: function () {
 //     this.values.push(this.$refs.FormItems.formvalue)

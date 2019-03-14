@@ -6,7 +6,7 @@
 3. Function: Check data in control panel
 4. Login system (using QCW)
 5. Verification code
-6. Reestablish database structure
+6. Reestablish database structure(done)
 
 ### Debug:
 1. Mysql wrong lead to backend collapse(eg: request a wrong formkey)

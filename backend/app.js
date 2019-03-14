@@ -58,22 +58,23 @@ app.all('*', function(req, res, next) {
   next();
 });//allow ChangeOrigin
 
-app.get('/',function(req,res){
+app.get('/form',function(req,res){
   console.log(req.query);
-  conn.query('select formstr from formlist where formkey = ?',req.query.key,function(err,result){
+  var getform = "select * from view" + req.query.key;
+  conn.query(getform,function(err,result){
     if(err){
       console.log(err);
       res.end;
     }
     else{
-      console.log(result[0].formstr);
-      res.send(result[0].formstr);
+      console.log(result);
+      res.send(result);
       res.end;
     }
   });
-});
+});//get form
 
-app.post('/',function(req,res){
+app.post('/create',function(req,res){
   console.log(req.body);
   req.on("data",function(data){//listening data
     // console.log(decodeURIComponent(data));//decode
@@ -82,10 +83,10 @@ app.post('/',function(req,res){
     console.log(data);
     var formkey = data[data.length-1].key;
     data.splice(data.length-1,1);
-    var datastr = JSON.stringify(data);
+    // var datastr = JSON.stringify(data);
     // conn.connect;
     // console.log(datastr);
-    conn.query("insert into formlist(formkey,formstr) values (?,?)",[formkey,datastr],function(err,result){
+    conn.query("insert into formlist(formkey) values (?)",formkey,function(err,result){
       if(err){
         console.log(err.message);
         // res.writeHead(500,{'Content-Type':'text/html'});
@@ -94,6 +95,41 @@ app.post('/',function(req,res){
         return;
       }
       // res.writeHead(200,{'Conten-Type':'text/html'});
+
+      var createfviewtable = "CREATE TABLE view" + formkey + " (id INT(11) NOT NULL AUTO_INCREMENT";
+      for(var i in data[0]){
+        createfviewtable += ("," + i + " varchar(255)");
+      }
+      createfviewtable += ",PRIMARY KEY(id))DEFAULT CHARSET=utf8";
+      // console.log(createfviewtable);
+      conn.query(createfviewtable, function(err){
+        if(err){
+          console.log(err.message);
+          // res.writeHead(500,{'Content-Type':'text/html'});
+          res.send('0');
+          res.end();
+          return;
+        }
+        // var insertfitem1 = "insert into view" + formkey + "(";
+        // var insertfitem2 = " values (";
+        for(var i in data){
+        var insertfitem1 = "insert into view" + formkey + "(";
+        var insertfitem2 = " values (";
+          for(var j in data[i]){
+            insertfitem1 += (j + ",");
+            insertfitem2 += ("\"" + data[i][j] + "\",");
+            // console.log(data[i]);
+          }
+        insertfitem1 = insertfitem1.substring(0,insertfitem1.length-1);
+        insertfitem2 = insertfitem2.substring(0,insertfitem2.length-1);
+        insertfitem1 += ")";
+        insertfitem2 += ")";
+        console.log(i);
+        console.log(insertfitem1+insertfitem2);
+        conn.query(insertfitem1 + insertfitem2);
+        }
+      });
+
       var createfield = "";
       for(var datap = 0; datap < data.length; datap++)
       {
@@ -113,7 +149,7 @@ app.post('/',function(req,res){
       });
     });
   });
-});
+});//create form
 
 app.post('/formpost',function(req,res){
   req.on("data",function(data){
@@ -144,6 +180,6 @@ app.post('/formpost',function(req,res){
       res.end();
     });
   });
-});
+});//form submit
 
 module.exports = app;

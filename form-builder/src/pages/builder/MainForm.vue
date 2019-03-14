@@ -59,7 +59,7 @@ export default {
         //       console.log(typeof res.data)
         //     }
         //   })
-        builder.sendformdata('http://localhost:3000', this)
+        builder.sendformdata('http://localhost:3000/create', this)
       } else {
         alert('!')
         this.items.splice(0, 1)
