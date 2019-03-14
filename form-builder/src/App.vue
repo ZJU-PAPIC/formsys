@@ -10,13 +10,16 @@
 import MainForm from './pages/builder/MainForm.vue'
 import GetForm from './pages/form/GetForm.vue'
 import ControlPanel from './pages/controlpanel/ControlPanel.vue'
-
+import Present from './pages/present/Present.vue'
+import Details from './pages/present/Details.vue'
 export default {
   name: 'App',
   components: {
     MainForm,
     GetForm,
-    ControlPanel
+    ControlPanel,
+    Present,
+    Details
   }
 }
 </script>

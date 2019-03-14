@@ -10,7 +10,7 @@ var mysql = require('mysql');
 var conn = mysql.createConnection({
   host : 'localhost',
   user : 'root',
-  password : 'root',
+  password : '123',
   database : 'formsys'
 });
 
@@ -69,6 +69,21 @@ app.get('/',function(req,res){
       console.log(result[0].formstr);
       res.send(result[0].formstr);
       res.end;
+    }
+  });
+});
+
+app.get('/present',function(req,res){
+//  console.log(req.query);
+  conn.query('select table_name from information_schema.TABLES where TABLE_SCHEMA="formsys"',function(err,result){
+    if(err){
+      console.log(err);
+      res.end;
+    }
+    else{
+  //      console.log(result);
+        res.send(result);
+        res.end;
     }
   });
 });
@@ -144,6 +159,29 @@ app.post('/formpost',function(req,res){
       res.end();
     });
   });
+});
+
+app.post('/details',function(req,res){
+    console.log('88');
+    req.on("data",function(data){
+      var data = JSON.parse(data);
+      console.log(data.params.key);
+      var sql='select * from '+data.params.key;
+      console.log(sql);
+      conn.query(sql,function(err,result){
+        if(err)
+        {
+          res.send("error");
+          return;
+        }
+        else{
+          console.log(result);
+          var keys=Object.keys(result[0]);
+          console.log(keys);
+          res.send(result);
+        }
+      })
+    })
 });
 
 module.exports = app;
