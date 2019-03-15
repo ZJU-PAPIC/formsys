@@ -55,7 +55,7 @@ export default {
     }
   },
   created: function () {
-    var thisx = this
+    // var thisx = this
     // this.axios.get('http://localhost:3000', {
     //   params: {key: this.fkey}
     // }).then(function (res) {

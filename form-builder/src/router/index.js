@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import MainForm from '@/pages/builder/MainForm'
 import GetForm from '@/pages/form/GetForm'
 import ControlPanel from '@/pages/controlpanel/ControlPanel'
+import Present from '@/pages/present/Present'
+import Detials from '@/pages/present/Details'
 
 Vue.use(Router)
 
@@ -23,6 +25,17 @@ export default new Router({
       path: '/controlpanel/builder',
       name: 'MainForm',
       component: MainForm
+    },
+    {
+      path: '/controlpanel/Present',
+      name: 'Present',
+      component: Present
+    },
+    {
+      path: '/controlpanel/Present/:fkey',
+      name: 'Details',
+      component: Detials,
+      props: true
     }
   ]
 })

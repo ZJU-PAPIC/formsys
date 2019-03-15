@@ -182,4 +182,46 @@ app.post('/formpost',function(req,res){
   });
 });//form submit
 
+
+app.get('/present',function(req,res){
+  //  console.log(req.query);
+    conn.query('select formkey from formlist',function(err,result){
+      if(err){
+        console.log(err);
+        res.send('0');
+        res.end();
+        return;
+      }
+      else{
+          console.log(result);
+          res.send(result);
+          res.end();
+      }
+    });
+});//chcek data formlist
+
+app.post('/details',function(req,res){
+  // console.log('88');
+  req.on("data",function(data){
+    var data = JSON.parse(data);
+    // console.log(data.params.key);
+    var sql='select * from '+data.params.key;
+    // console.log(sql);
+    conn.query(sql,function(err,result){
+      if(err){
+        console.log(err);
+        res.send("0");
+        res.end();
+        return;
+      }
+      else{
+        console.log(result);
+        var keys=Object.keys(result[0]);
+        // console.log(keys);
+        res.send(result);
+      }
+    });
+  });
+});//check data formdata
+
 module.exports = app;
