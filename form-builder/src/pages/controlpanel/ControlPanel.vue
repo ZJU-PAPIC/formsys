@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>this is panel</p>
+    <h3>this is panel</h3>
     <button @click='tobuilder'>to builder</button>
     <button @click='todatachecker'>data checker</button>
   </div>

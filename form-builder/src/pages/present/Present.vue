@@ -1,13 +1,14 @@
 <template>
   <div>
+    <h3>Click to check data</h3>
     <FormItems  v-for='(item,index) in items'
       :key='index'
       :index='index'
       :item='item'
       ref='FormItems'>
     </FormItems>
-    <input type="text" name="table" v-model="tables.table">
-    <button @click='uploadinput'>提交</button>
+    <!-- <input type="text" name="table" v-model="tables.table"> -->
+    <!-- <button @click='uploadinput'>提交</button> -->
   </div>
 </template>
 

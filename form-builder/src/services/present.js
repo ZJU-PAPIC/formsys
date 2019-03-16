@@ -26,6 +26,7 @@ export default {
     }).then(function (res) {
       thisx.items = res.data
       thisx.keys = Object.keys(res.data[0])
+      // console.log(thisx.items)
       // console.log(thisx.keys)
     })
   }

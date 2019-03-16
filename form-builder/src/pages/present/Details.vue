@@ -1,14 +1,16 @@
 <template>
   <div>
-    <span v-for='(item,index) in keys'
-      :key='index'>
-      {{item}}
-    </span>
-    <DetailItems v-for='(item,index) in items'
-      :key= "'info2' + index"
-      :item='item'
-      ref='DetailItems'>
-    </DetailItems>
+    <table border="1">
+      <th v-for='(item,index) in keys'
+        :key= "'info1' + index">
+        {{item}}
+      </th>
+      <DetailItems v-for='(item,index) in items'
+        :key= "'info2' + index"
+        :item='item'
+        ref='DetailItems'>
+      </DetailItems>
+    </table>
   </div>
 </template>
 

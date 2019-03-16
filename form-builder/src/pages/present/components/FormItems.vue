@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>{{index+1}}.
-      {{item.formkey}}
+    <p @click="godetails">{{index+1}}.
+      {{item.formname}}
     </p>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
   props: {
     item: Object,
     index: Number
+  },
+  methods: {
+    godetails: function () {
+      self.location.href += ('/' + this.item.formkey)
+    }
   }
 }
 </script>

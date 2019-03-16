@@ -9,11 +9,12 @@
     <input type='text' placeholder='Input placeholer for textbox' v-model='newplaceholder'>
     <button @click='addtextbox'>insert textbox</button>
     <div>
+      <input type='text' placeholder='Input form name' v-model='formname'>
       <button @click='createform'>Create</button>
     </div>
     <div>
       <!-- <p>{{'This form\'s key is: ' + fkey}}</p> -->
-      <a v-if='fkey' @click="gotoform">This form\'s key is: {{fkey}}</a>
+      <a v-if='fkey' @click="gotoform">This form's key is: {{fkey}}</a>
     </div>
   </div>
 </template>
@@ -31,7 +32,8 @@ export default {
     return {
       items: [{type: 'text', placeholder: 'this is a textbox', name: 'text1'}],
       newplaceholder: '',
-      fkey: ''
+      fkey: '',
+      formname: ''
     }
   },
   methods: {
@@ -44,11 +46,11 @@ export default {
       this.newplaceholder = ''
     },
     createform: function () {
-      var formkey = {key: 'f' + Date.now()}
+      var formkey = {key: 'f' + Date.now(), formname: this.formname}
       this.items.push(formkey)
       this.fkey = formkey.key
       formkey = {}
-      if (this.items.length > 1) {
+      if (this.items.length > 1 && this.formname !== '') {
         // this.axios.post('http://localhost:3000', this.items)
         //   .then((res) => {
         //     console.log(res)
@@ -65,6 +67,7 @@ export default {
         this.items.splice(0, 1)
         // console.log(this.items)
         this.fkey = ''
+        this.formname = ''
       }
       this.items = []
     },

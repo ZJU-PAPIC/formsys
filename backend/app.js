@@ -82,11 +82,12 @@ app.post('/create',function(req,res){
     var data = JSON.parse(data);//parse
     console.log(data);
     var formkey = data[data.length-1].key;
+    var formname = data[data.length-1].formname;
     data.splice(data.length-1,1);
     // var datastr = JSON.stringify(data);
     // conn.connect;
     // console.log(datastr);
-    conn.query("insert into formlist(formkey) values (?)",formkey,function(err,result){
+    conn.query("insert into formlist(formkey,formname) values (?,?)",[formkey,formname],function(err,result){
       if(err){
         console.log(err.message);
         // res.writeHead(500,{'Content-Type':'text/html'});
@@ -185,7 +186,7 @@ app.post('/formpost',function(req,res){
 
 app.get('/present',function(req,res){
   //  console.log(req.query);
-    conn.query('select formkey from formlist',function(err,result){
+    conn.query('select * from formlist',function(err,result){
       if(err){
         console.log(err);
         res.send('0');
@@ -204,7 +205,7 @@ app.post('/details',function(req,res){
   // console.log('88');
   req.on("data",function(data){
     var data = JSON.parse(data);
-    // console.log(data.params.key);
+    console.log(data.params.key);
     var sql='select * from '+data.params.key;
     // console.log(sql);
     conn.query(sql,function(err,result){

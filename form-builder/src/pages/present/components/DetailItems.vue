@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <label style="display: inline" v-for="i in item" :key="i"> {{i}}</label>
-  </div>
+  <tr>
+    <td v-for="(i,index) in item" :key="index"> {{i}}</td>
+  </tr>
 </template>
 
 <script>

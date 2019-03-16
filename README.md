@@ -3,13 +3,13 @@
 ### Remaining Works(Necessary):
 1. submit system (done) / submit success alert (done) / auto build datatable (done)
 2. Form Validation (done)
-3. Function: Check data in control panel(halfdone)
+3. Function: Check data in control panel(done) / Friendly field name needed!
 4. Login system (using QCW)
 5. Verification code
 6. Reestablish database structure(done)
 
 ### Debug:
-1. Mysql wrong lead to backend collapse(eg: request a wrong formkey)
+1. Mysql wrong lead to backend collapse(eg: request a wrong formkey/formdata is empty)
 
 ### Expansion Functions:
 1. More form component (including submit files)
